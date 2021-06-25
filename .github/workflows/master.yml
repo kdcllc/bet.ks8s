@@ -52,7 +52,7 @@ jobs:
         with:
           useConfigFile: true
           updateAssemblyInfo: true
-          updateAssemblyInfoFilename: true
+          updateAssemblyInfoFilename: false
 
       - name: Display GitVersion outputs
         run: |
