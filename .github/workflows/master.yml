@@ -7,6 +7,7 @@ on:
 
 env:
   configuration: Release
+  solution: bet.k8s.sln
 
 # The jobs run sequentially and with dependency
 jobs:
@@ -74,11 +75,14 @@ jobs:
           echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
           echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
 
+      - name: Clear Nuget Feeds
+        run: dotnet nuget locals --clear all
+
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ${{ env.solution }} -v quiet
 
       - name: Build
-        run: dotnet build --configuration ${{ env.dotNetConfiguration }}  --no-restore -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+        run: dotnet build ${{ env.solution }} --configuration ${{ env.dotNetConfiguration }}  --no-restore -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
 
       - name: Test
         run: dotnet test --no-build --verbosity normal
