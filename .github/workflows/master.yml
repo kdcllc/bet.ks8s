@@ -5,6 +5,7 @@ on:
   push:
     branches: [master]
 
+# environment vars
 env:
   configuration: Release
   solution: bet.k8s.sln
