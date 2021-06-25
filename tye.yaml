@@ -20,5 +20,5 @@ ingress:
     rules:
       - path: /
         service: bet-k8s-api
-      - host: betapi.kingdavidconsulting.com
+      - host: betapihpa.kingdavidconsulting.com
         service: bet-k8s-api
