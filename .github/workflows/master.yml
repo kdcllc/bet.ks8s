@@ -80,7 +80,6 @@ jobs:
 
       - name: Adding Nuget Feeds
         run: |
-          dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
           dotnet nuget add source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet6/nuget/v3/index.json -n dotnet6
           dotnet nuget add source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json -n dotnet6-tools
 
