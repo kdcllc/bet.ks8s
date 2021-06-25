@@ -1,5 +1,7 @@
 # bet.ks8s
 
+[![Master CI/CD](https://github.com/kdcllc/bet.ks8s/actions/workflows/master.yml/badge.svg)](https://github.com/kdcllc/bet.ks8s/actions/workflows/master.yml)
+
 The goal of this repo is two fold:
 
 1. GitHub Actions Docker Images build and deployment
