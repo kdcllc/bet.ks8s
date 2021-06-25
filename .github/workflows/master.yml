@@ -45,6 +45,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0.9.7
         with: 
           useConfigFile: true
+          updateAssemblyInfo: false
           
       - name: Display GitVersion outputs
         run: |
