@@ -64,13 +64,13 @@ jobs:
         run: dotnet restore ${{ env.solution }} -v quiet
 
       - name: Build
-        run: dotnet build ${{ env.solution }} --configuration ${{ env.configuration }}  --no-restore -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}-${{ steps.gitversion.outputs.CommitsSinceVersionSourcePadded }} 
+        run: dotnet build ${{ env.solution }} --configuration ${{ env.configuration }}  --no-restore -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }} 
 
       - name: Test
         run: dotnet test --no-build --verbosity normal
 
       - name: Package
-        run: dotnet pack --no-build --configuration ${{ env.configuration }}  --no-restore -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}-${{ steps.gitversion.outputs.CommitsSinceVersionSourcePadded }}  -o packages
+        run: dotnet pack --no-build --configuration ${{ env.configuration }}  --no-restore -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}  -o packages
 
       - name: Publish Nuget Packages
         run: dotnet nuget push packages/*.nupkg --api-key ${{ secrets.FEEDZ_API_KEY }} --source https://f.feedz.io/kdcllc/kdcllc/nuget/index.json --skip-duplicate --no-symbols true
