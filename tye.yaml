@@ -6,8 +6,8 @@
 #
 name: bet.k8s
 services:
-- name: bet-k8s-api
-  project: src/bet.k8s.api/bet.k8s.api.csproj
+  - name: bet-k8s-api
+    project: src/bet.k8s.api/bet.k8s.api.csproj
 
 registry: kdcllc
 
@@ -20,5 +20,5 @@ ingress:
     rules:
       - path: /
         service: bet-k8s-api
-      - host: betapihpa.kingdavidconsulting.com
+      - host: betapi.kingdavidconsulting.com
         service: bet-k8s-api

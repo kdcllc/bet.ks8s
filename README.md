@@ -30,11 +30,10 @@ The goal of this repo is two fold:
 ```
 
 ```bash
-     kubectl port-forward pods/bet-k8s-api-554d7967df-68z5v 5080:80 -n bet
-```
+    kubectl apply -f "deploy.yaml" -n bet
+    kubectl delete -f "deploy.yaml" -n bet
 
-```bash
-    
+    kubectl port-forward pods/bet-k8s-api-554d7967df-68z5v 5080:80 -n bet
 ```
 
 Download [bombardier/](https://github.com/codesenberg/bombardier/releases)
@@ -50,6 +49,9 @@ Download [bombardier/](https://github.com/codesenberg/bombardier/releases)
 
 ## References
 
+- [`tye` with ingress recipes](https://github.com/dotnet/tye/blob/ad3f692d53ab1dd5bca5c2508d47c287777a7e40/docs/recipes/ingress.md)
+- [Create an ingress controller with a static public IP address in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/ingress-static-ip)
+- [Helm releases](https://github.com/helm/helm/releases)
 - [MinimalApiPlayground](https://github.com/DamianEdwards/MinimalApiPlayground)
 - [minimalApiWithSwagger](https://github.com/bradygaster/minimalApiWithSwagger)
 - [swagger](https://github.com/halter73/swagger)

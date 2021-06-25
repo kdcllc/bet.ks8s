@@ -1,5 +1,9 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
+#
+# BUILD:
+#        docker build --rm -f "src/bet.k8s.api/Dockerfile" -t kdcllc/bet:apihpa .
+# PUSH:         
+#        docker push kdcllc/bet:apihpa
+#
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
