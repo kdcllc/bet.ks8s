@@ -104,6 +104,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, tag]
     steps:
+     
+      - name: Checks out repo
+        uses: actions/checkout@v2
+
       - name: Build Container
         run: docker-compose build --parallel # https://docs.docker.com/compose/reference/build/
 
