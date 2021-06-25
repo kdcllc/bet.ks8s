@@ -1,0 +1,9 @@
+<Project>
+    <ItemGroup>
+        <!-- C# 10 compliler for VSCode VS.NET works without it -->
+        <PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="4.0.0-2.21310.25">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+</Project>
