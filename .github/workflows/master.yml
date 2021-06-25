@@ -55,6 +55,10 @@ jobs:
           updateAssemblyInfo: false
           updateAssemblyInfoFilename: false
 
+      - name: Display SemVer
+        run: |
+          echo "SemVer: $GITVERSION_SEMVER"
+
       - name: Display GitVersion outputs
         run: |
           echo "ShortSha: ${{ steps.gitversion.outputs.shortSha }}"
