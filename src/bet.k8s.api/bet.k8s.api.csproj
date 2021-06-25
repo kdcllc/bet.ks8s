@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RestoreSources>
+			$(RestoreSources);
+			https://api.nuget.org/v3/index.json;
+			https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet6/nuget/v3/index.json
+		</RestoreSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\bet.k8s.test\bet.k8s.test.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- C# 10 compliler for VSCode VS.NET works without it -->
+    <PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="4.0.0-2.21310.25">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>
