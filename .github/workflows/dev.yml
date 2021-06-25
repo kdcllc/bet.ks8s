@@ -26,6 +26,17 @@ jobs:
         with:
           dotnet-version: "6.0.x"
           include-prerelease: true
+
+      # https://github.com/GitTools/actions
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.9
+        with:
+          versionSpec: "5.x"
+
+      - name: Install DotNetCore 5.0 for GitVersion
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "5.0.x"
       # https://github.com/GitTools/actions/blob/main/docs/examples/github/gitversion/execute/usage-examples.md
       - name: Use GitVersion
         id: gitversion
