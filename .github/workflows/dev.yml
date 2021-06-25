@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: "Dev CI/CD"
 
 # Controls when the workflow will run
@@ -7,6 +5,11 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [dev]
+
+# environment vars
+env:
+  configuration: Release
+  solution: bet.k8s.sln
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -23,12 +26,57 @@ jobs:
         with:
           dotnet-version: "6.0.x"
           include-prerelease: true
+      # https://github.com/GitTools/actions/blob/main/docs/examples/github/gitversion/execute/usage-examples.md
+      - name: Use GitVersion
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.7
+        with:
+          useConfigFile: true
+          updateAssemblyInfo: false
+          updateAssemblyInfoFilename: false
+
+      - name: Display GitVersion outputs
+        run: |
+          echo "ShortSha: ${{ steps.gitversion.outputs.shortSha }}"
+          echo "NuGetVersionV2: ${{ steps.gitversion.outputs.nuGetVersionV2 }}"
+          echo "VersionSourceSha: ${{ steps.gitversion.outputs.versionSourceSha }}"
+          echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.commitsSinceVersionSource }}"
+          echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
+
+      - name: Clear Nuget Feeds
+        run: dotnet nuget locals --clear all
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ${{ env.solution }} -v quiet
 
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build ${{ env.solution }} --configuration ${{ env.configuration }}  --no-restore -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
 
-      # - name: Test
-      #   run: dotnet test --no-build --verbosity normal
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+
+      - name: Package
+        run: dotnet pack --no-build --configuration ${{ env.configuration }}  --no-restore -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }} -o packages
+
+      - name: Publish Nuget Packages
+        run: dotnet nuget push packages/*.nupkg --api-key ${{ secrets.FEEDZ_API_KEY }} --source https://f.feedz.io/kdcllc/kdcllc/nuget/index.json --skip-duplicate --no-symbols true
+
+  # This workflow contains
+  tag:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Display GitVersion outputs
+        run: |
+          echo "Version: ${{ needs.build.outputs.Version }}" 
+          echo "CommitsSinceVersionSource: ${{ needs.build.outputs.CommitsSinceVersionSource }}"
+
+      - name: Create Tag and Release
+        id: create_release
+        uses: actions/create-release@v1
+        if: needs.build.outputs.CommitsSinceVersionSource > 0 # only create a release if there has been a commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this token is provided by actions not need to create
+        with:
+          tag_name: ${{ needs.build.outputs.Version }}
+          release_name: Release ${{ needs.build.outputs.Version }}
