@@ -25,6 +25,10 @@ app.MapGet("/", async (HttpContext context) =>
     await context.Response.WriteAsync(string.Join(", ", primes));
 });
 
+app.UseHttpsRedirection();
+
+app.UseHttpLogging();
+
 await app.RunAsync();
 
 public record TheApiModel(string Target = "World");
