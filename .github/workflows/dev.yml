@@ -17,6 +17,9 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    outputs:
+      Version: ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+      CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -64,7 +67,7 @@ jobs:
         run: dotnet restore ${{ env.solution }} -v quiet
 
       - name: Build
-        run: dotnet build ${{ env.solution }} --configuration ${{ env.configuration }}  --no-restore -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }} 
+        run: dotnet build ${{ env.solution }} --configuration ${{ env.configuration }}  --no-restore -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
 
       - name: Test
         run: dotnet test --no-build --verbosity normal
