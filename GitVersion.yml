@@ -3,10 +3,16 @@ next-version: 0.1
 assembly-versioning-scheme: MajorMinorPatch
 branches:
   dev:
+    regex: ^dev(elop)?(ment)?$
     tag: preview
+    increment: Patch
   feature:
+    regex: ^features?[/-]
     tag: beta
+    increment: Inherit
   master:
+    regex: ^master
     tag: ''
+    increment: Patch
 ignore:
   sha: []
