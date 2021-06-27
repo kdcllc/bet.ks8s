@@ -6,21 +6,15 @@ branches:
     regex: ^main
     tag: ''
     increment: Patch
-    prevent-increment-of-merged-branch-version: true
-    is-release-branch: true
 
   feature:
     regex: ^features?[/-]
     tag: 'alpha'
     increment: Inherit
-    prevent-increment-of-merged-branch-version: false
-    is-release-branch: false
 
   develop:
     regex: ^dev(elop)?(ment)?$
     tag: preview
     increment: Minor
-    prevent-increment-of-merged-branch-version: false
-    is-release-branch: false
 ignore:
   sha: []
