@@ -1,3 +1,10 @@
 mode: Mainline
 next-version: 1.0
 assembly-versioning-scheme: MajorMinorPatch
+branches:
+  feature:
+    tag: preview
+  master:
+    tag: ''
+ignore:
+  sha: []
