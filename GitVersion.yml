@@ -2,8 +2,10 @@ mode: Mainline
 next-version: 1.0
 assembly-versioning-scheme: MajorMinorPatch
 branches:
-  feature:
+  dev:
     tag: preview
+  feature:
+    tag: beta
   master:
     tag: ''
 ignore:
