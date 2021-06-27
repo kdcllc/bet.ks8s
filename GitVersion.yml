@@ -1,4 +1,4 @@
-mode: Mainline
+mode: ContinuousDeployment
 next-version: 0.1
 assembly-versioning-scheme: MajorMinorPatch
 branches:
