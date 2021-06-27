@@ -2,20 +2,32 @@ mode: ContinuousDeployment
 next-version: 0.1
 assembly-versioning-scheme: MajorMinorPatch
 branches:
-  dev:
-    regex: ^dev
-    is-source-branch-for: ['dev']
-    tag: preview
-    increment: Patch
-  feature:
-    regex: ^features?[/-]
-    is-source-branch-for: ['feature']
-    tag: beta
-    increment: Inherit
+  
   master:
-    regex: ^master
-    is-source-branch-for: ['master']
+    regex: ^main
     tag: ''
     increment: Patch
+    prevent-increment-of-merged-branch-version: true
+    track-merge-target: false
+    tracks-release-branches: false
+    is-release-branch: true
+
+  feature:
+    regex: ^features?[/-]
+    tag: 'alpha'
+    increment: Inherit
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: false
+    tracks-release-branches: false
+    is-release-branch: false
+
+  develop:
+    regex: ^dev(elop)?(ment)?$
+    tag: preview
+    increment: Minor
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: true
+    tracks-release-branches: true
+    is-release-branch: false
 ignore:
   sha: []
