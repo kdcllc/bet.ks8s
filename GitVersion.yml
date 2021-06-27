@@ -3,7 +3,6 @@ next-version: 0.1
 branches:
 
   master:
-    regex: ^main
     tag: ''
     increment: Patch
 
