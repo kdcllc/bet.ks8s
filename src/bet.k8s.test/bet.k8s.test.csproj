@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Nuget">
+		<PackageId>bet.k8s.test</PackageId>
+		<Authors>kdcllc</Authors>
+		<Company>King David Consulting LLC</Company>
+		<Title>bet.k8s.test</Title>
+		<PackageTags>AspNetCore; K8s; Testing</PackageTags>
+		<PackageDescription>
+			K8s testing library.
+		</PackageDescription>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/kdcllc/bet.ks8s</RepositoryUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="4.0.0-3.21317.20">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+</Project>

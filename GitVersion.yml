@@ -1,0 +1,12 @@
+mode: Mainline
+next-version: 0.1
+assembly-versioning-scheme: MajorMinorPatch
+branches:
+  dev:
+    tag: preview
+  feature:
+    tag: beta
+  master:
+    tag: ''
+ignore:
+  sha: []

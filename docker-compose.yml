@@ -1,0 +1,8 @@
+version: '3.9'
+
+services: 
+  bet.hpa:
+    image: ${DOCKER_REGISTRY-}/bet:apihpa
+    build: 
+      context: .
+      dockerfile: src/bet.k8s.api/Dockerfile

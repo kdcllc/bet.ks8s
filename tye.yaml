@@ -1,0 +1,24 @@
+# tye application configuration file
+# read all about it at https://github.com/dotnet/tye
+#
+# when you've given us a try, we'd love to know what you think:
+#    https://aka.ms/AA7q20u
+#
+name: bet.k8s
+services:
+  - name: bet-k8s-api
+    project: src/bet.k8s.api/bet.k8s.api.csproj
+
+registry: kdcllc
+
+# https://github.com/dotnet/tye/blob/ad3f692d53ab1dd5bca5c2508d47c287777a7e40/docs/recipes/ingress.md
+# kubectl get all -n ingress-nginx
+ingress:
+  - name: bet-k8s-api
+    bindings:
+      - port: 80
+    rules:
+      - path: /
+        service: bet-k8s-api
+      - host: betapi.kingdavidconsulting.com
+        service: bet-k8s-api
