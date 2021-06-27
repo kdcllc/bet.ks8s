@@ -1,5 +1,4 @@
 <Project>
-
     <PropertyGroup>
         <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
         <LangVersion>preview</LangVersion>
